@@ -1,4 +1,4 @@
-package com.maporientation.maptoomi;
+package com.maporientation.maptoomi.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,9 +11,11 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
 
+import com.maporientation.maptoomi.R;
+
 public class HomeActivity extends AppCompatActivity {
 
-    private Button btnProfil,btnOffre,btnActu,btn360;
+    private Button btnProfil,btnMetiers,btnActu,btn360;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,22 +33,22 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
         btnProfil = (Button) findViewById(R.id.btnProfil);
-        btnOffre = (Button) findViewById(R.id.btnOffre);
+        btnMetiers = (Button) findViewById(R.id.btnMetiers);
         btnActu = (Button) findViewById(R.id.btnActu);
         btn360 = (Button) findViewById(R.id.btn360);
 
         btnProfil.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,**********.class);
+                Intent intent = new Intent(HomeActivity.this,ProfilActivity.class);
                 startActivity(intent);
             }
         });
 
-        btnOffre.setOnClickListener(new View.OnClickListener() {
+        btnMetiers.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,**********.class);
+                Intent intent = new Intent(HomeActivity.this,MetiersActivity.class);
                 startActivity(intent);
             }
         });
@@ -54,7 +56,7 @@ public class HomeActivity extends AppCompatActivity {
         btnActu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,**********.class);
+                Intent intent = new Intent(HomeActivity.this,ActuOrientationActivity.class);
                 startActivity(intent);
             }
         });
@@ -62,7 +64,7 @@ public class HomeActivity extends AppCompatActivity {
         btn360.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,**********.class);
+                Intent intent = new Intent(HomeActivity.this,TroisCentSoixanteActivity.class);
                 startActivity(intent);
             }
         });

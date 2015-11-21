@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_metierss"
+    tools:context="com.maporientation.maptoomi.activities.MetiersActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+            android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            tools:context="com.example.hp.pic2.Metiers">
+            <Button
+                android:background="@drawable/button_bleu_fleche"
+                android:text="Vos 50 métiers"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/topmetiers" />
+            <Button
+                android:background="@drawable/button_bleu_fleche"
+                android:text="Plus de 500 métiers à découvrir"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/metiersdecouvrir" />
+            <Button
+                android:background="@drawable/button_bleu_fleche"
+                android:text="Des pistes à suivre..."
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/pistesuivre" />
+            <ImageView android:layout_gravity="center"
+                android:layout_height="250dp"
+                android:layout_width="372dp"
+                android:src="@drawable/secouer_moi"/>
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_trois_cent_soixante"
+    tools:context="com.maporientation.maptoomi.activities.TroisCentSoixanteActivity">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center_vertical"
+            tools:context="com.example.hp.pic2.TroisCentSoixante">
+            <TextView
+                android:text="votre résultat Test :"
+                android:gravity="center"/>
+            <Button android:background="@drawable/bouton_vert"
+                android:text="Inviter un ami"
+                android:gravity="center"
+                android:textColor="@color/white"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/inviterunami"/>
+        </TableLayout>
+    </ScrollView>
+</RelativeLayout>
