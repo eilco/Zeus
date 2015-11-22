@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">MAPTOOMI</string>
     <string name="action_settings">Settings</string>
-    <string name="title_activity_profila">Profila</string>
+    <string name="title_activity_profil">ProfilActivity</string>
     <string name="title_activity_metiers">MetiersActivity</string>
     <string name="title_activity_actu_orientation">ActuOrientationActivity</string>
     <string name="title_activity_trois_cent_soixante">TroisCentSoixanteActivity</string>
