@@ -1,11 +1,13 @@
 package com.maporientation.maptoomi.activities;
 
+import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 import com.maporientation.maptoomi.R;
 
@@ -16,7 +18,7 @@ public class MetiersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_metiers);
         /* do this in onCreate */
-        /*mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
+        mSensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
         mSensorManager.registerListener(mSensorListener, mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER), SensorManager.SENSOR_DELAY_NORMAL);
         mAccel = 0.00f;
         mAccelCurrent = SensorManager.GRAVITY_EARTH;
@@ -24,7 +26,7 @@ public class MetiersActivity extends AppCompatActivity {
         if (mAccel > 12) {
             Toast toast = Toast.makeText(getApplicationContext(), "Device has shaken.", Toast.LENGTH_LONG);
             toast.show();
-        }*/
+        }
     }
     /* put this into your activity class */
     private SensorManager mSensorManager;
