@@ -1,54 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="40dp"
+    android:paddingRight="16dp"
+    android:paddingLeft="16dp"
+    android:paddingBottom="16dp"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:showIn="@layout/activity_profil"
     tools:context="com.maporientation.maptoomi.activities.ProfilActivity">
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
-
-        <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_gravity="center"
-            tools:context="com.example.hp.pic2.Profil">
+            android:gravity="center"
+            android:orientation="vertical">
+                    <TextView android:id="@+id/profiltext1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="  La méthode TRICAM sur lequel \n repose ce test vous aidera à mieux \n connître vos points forts et \n facilitera vos choix d'orientation." >
+                    </TextView>
 
-            <TextView android:id="@+id/profiltext1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="  La méthode TRICAM sur lequel \n repose ce test vous aidera à mieux \n connître vos points forts et \n facilitera vos choix d'orientation." >
-            </TextView>
-
-            <TextView android:id="@+id/profiltext2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="\n Elle nous permettre de vous \n indiquer les idées de métiers les \n   mieux adapter" >
-            </TextView>
-            <TextView android:id="@+id/profiltext3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="\n Vous pourrez aussi demander l'avis\n de vos amis qui vous aideront à \n  mieux vous connaître." >
-            </TextView>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="0dp"
-                android:background="@drawable/bouton_vert"
-                android:text="Passer le test"
-                android:textColor="@color/white"
-                android:gravity="center"
-                android:id="@+id/passer_test"/>
-
-        </TableLayout>
+                    <TextView android:id="@+id/profiltext2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="\n Elle nous permettre de vous \n indiquer les idées de métiers les \n   mieux adapter" >
+                    </TextView>
+                    <TextView android:id="@+id/profiltext3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:text="\n Vous pourrez aussi demander l'avis\n de vos amis qui vous aideront à \n  mieux vous connaître."
+                        android:layout_marginBottom="30dp">
+                    </TextView>
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bouton_vert"
+                        android:text="Passer le test"
+                        android:textColor="@color/white"
+                        android:gravity="center"
+                        android:id="@+id/passer_test"/>
+        </LinearLayout>
     </ScrollView>
 </RelativeLayout>
