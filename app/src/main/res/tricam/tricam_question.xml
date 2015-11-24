@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <!--Premiere Partie-->
+    <partie id="1" name="Titre de la partie 1">
+        <etape>
+            <!--etape 1-->
+            <question id="1" type="checkbox" value="R" image="illu_echec.png">Jouer aux échecs</question>
+            <question id="2" type="checkbox" value="T" image="illu_sport.png">Faire du sport</question>
+            <question id="3" type="checkbox" value="R" image="illu_sciences.png">Lire des livres scientifiques</question>
+            
+            <question id="4" type="checkbox" value="I" image="illu_music.png">Ecouter de la musique</question>
+            <question id="5" type="checkbox" value="A" image="illu_assoc.png">Diriger une association</question>
+            <question id="6" type="checkbox" value="M" image="illu_mot_croises.png">Faire des mots croisés</question>
+            <question id="7" type="checkbox" value="T" image="illu_randonnee.png">Faire une randonnée</question>
+            <question id="8" type="checkbox" value="I" image="illu_roman.png">Lire un roman ou une BD</question>
+            <question id="9" type="checkbox" value="C" image="illu_theatre.png">Jouer dans une pièce de théâtre</question>
+            
+            <question id="10" type="checkbox" value="C" image="illu_week_end.png">Partir en week-end à l'étranger</question>
+            <question id="11" type="checkbox" value="A" image="illu_gala.png">Assister à une soirée de gala</question>
+            <question id="12" type="checkbox" value="M" image="illu_famille.png">Rendre visite à la famille</question>
+        </etape>
+        <etape>
+            <!--etape 2-->
+            <question id="14" type="checkbox" value="T" image="illu_bricolage.png">Faire du bricolage</question>
+            
+            <question id="15" type="checkbox" value="R" image="illu_internet.png">Rechercher de l'info sur Internet</question>
+            <question id="16" type="checkbox" value="C" image="illu_voisin.png">Résoudre un conflit de voisinage</question>
+            <question id="17" type="checkbox" value="A" image="illu_fete.png">Organiser une fête</question>
+            <question id="18" type="checkbox" value="I" image="illu_artiste.png">Discuter avec des artistes</question>
+            <question id="19" type="checkbox" value="C" image="illu_aider_autres.png">Aider les autres</question>
+            <question id="20" type="checkbox" value="M" image="illu_consigne.png">Appliquer des consignes précises</question>
+            
+            <question id="21" type="checkbox" value="A" image="illu_defis.png">Relever des défis</question>
+            <question id="22" type="checkbox" value="M" image="illu_dossiers.png">Gérer des dossiers</question>
+            <question id="23" type="checkbox" value="R" image="illu_problemes.png">Résoudre des problèmes compliqués</question>
+            <question id="24" type="checkbox" value="I" image="illu_idees.png">Apporter ses propres idées</question>
+            <question id="25" type="checkbox" value="T" image="illu_outils.png">Utiliser des outils et/ou des machines</question>
+        </etape>
+        
+        <etape>
+            <!--etape 3-->
+            <question id="27" type="checkbox" value="A" image="illu_show.png">Faire son show devant les copains</question>
+            <question id="28" type="checkbox" value="I" image="illu_sens.png">Utiliser son sens artistique</question>
+            <question id="29" type="checkbox" value="A" image="illu_argent.png">Gagner beaucoup d'argent</question>
+            <question id="30" type="checkbox" value="C" image="illu_idees_autres_gens.png">Partager des idées avec d'autres gens</question>
+            <question id="31" type="checkbox" value="R" image="illu_apprendre.png">Apprendre de nouvelles choses</question>
+            
+            <question id="32" type="checkbox" value="T" image="illu_savoir_faire.png">Utiliser des savoir-faire techniques</question>
+            <question id="33" type="checkbox" value="M" image="illu_objectifs_definis.png">Avoir des objectifs clairement définis</question>
+            <question id="34" type="checkbox" value="C" image="illu_travailler_gens.png">Travailler avec des gens différents</question>
+            <question id="35" type="checkbox" value="R" image="illu_travailler_concret.png">Travailler sur du concret</question>
+            <question id="36" type="checkbox" value="I" image="illu_creativite.png">Faire preuve de créativité</question>
+        </etape>
+        
+    </partie>
+    <!--Seconde Partie-->
+    <partie id="2" name="Titre de la partie 2">
+        <etape>
+            <!--etape 1-->
+            <choix id="7" type="radio">
+                <gauche>créatif</gauche>
+                <droite>ordonné</droite>
+                
+            </choix>
+            <choix id="8" type="radio">
+                <gauche>matérialiste</gauche>
+                <droite>généreux</droite>
+            </choix>
+            <choix id="9" type="radio">
+                <gauche>rationnel</gauche>
+                
+                <droite>aventurier</droite>
+            </choix>
+            <choix id="10" type="radio">
+                <gauche>pratique</gauche>
+                <droite>inquiet</droite>
+            </choix>
+            <choix id="11" type="radio">
+                
+                <gauche>fonceur</gauche>
+                <droite>imaginatif</droite>
+            </choix>
+            <choix id="12" type="radio">
+                <gauche>fier</gauche>
+                <droite>audacieux</droite>
+            </choix>
+            
+            <choix id="13" type="radio">
+                <gauche>précis</gauche>
+                <droite>conciliant</droite>
+            </choix>
+            <choix id="14" type="radio">
+                <gauche>économe</gauche>
+                <droite>indulgent</droite>
+                
+            </choix>
+            <choix id="15" type="radio">
+                <gauche>réfléchi</gauche>
+                <droite>méthodique</droite>
+            </choix>
+            <choix id="16" type="radio">
+                <gauche>changeant</gauche>
+                
+                <droite>exigeant</droite>
+            </choix>
+        </etape>
+        <etape>
+            <!--etape 2-->
+            <choix id="18" type="radio">
+                <gauche>précis</gauche>
+                <droite>agréable</droite>
+                
+            </choix>
+            <choix id="19" type="radio">
+                <gauche>dominateur</gauche>
+                <droite>intellectuel</droite>
+            </choix>
+            <choix id="20" type="radio">
+                <gauche>authentique</gauche>
+                
+                <droite>inquiet</droite>
+            </choix>
+            <choix id="21" type="radio">
+                <gauche>généreux</gauche>
+                <droite>logique</droite>
+            </choix>
+            <choix id="22" type="radio">
+                
+                <gauche>organisé</gauche>
+                <droite>diplomate</droite>
+            </choix>
+            <choix id="23" type="radio">
+                <gauche>consciencieux</gauche>
+                <droite>critique</droite>
+            </choix>
+            
+            <choix id="24" type="radio">
+                <gauche>imaginatif</gauche>
+                <droite>raisonnable</droite>
+            </choix>
+            <choix id="25" type="radio">
+                <gauche>logique</gauche>
+                <droite>sûr de moi</droite>
+                
+            </choix>
+            <choix id="26" type="radio">
+                <gauche>anticonformiste</gauche>
+                <droite>méthodique</droite>
+            </choix>
+            <choix id="27" type="radio">
+                <gauche>charmeur</gauche>
+                
+                <droite>réaliste</droite>
+            </choix>
+        </etape>
+        <etape>
+            <!--etape 3-->
+            <choix id="29" type="radio">
+                <gauche>émotif</gauche>
+                <droite>consciencieux</droite>
+                
+            </choix>
+            <choix id="30" type="radio">
+                <gauche>patient</gauche>
+                <droite>compatissant</droite>
+            </choix>
+            <choix id="31" type="radio">
+                <gauche>concret</gauche>
+                
+                <droite>tolérant</droite>
+            </choix>
+            <choix id="32" type="radio">
+                <gauche>ambitieux</gauche>
+                <droite>analytique</droite>
+            </choix>
+            <choix id="34" type="radio">
+                
+                <gauche>fier</gauche>
+                <droite>flexible</droite>
+            </choix>
+            <choix id="35" type="radio">
+                <gauche>fonceur</gauche>
+                <droite>cultivé</droite>
+            </choix>
+            
+            <choix id="36" type="radio">
+                <gauche>pratique</gauche>
+                <droite>autoritaire</droite>
+            </choix>
+            <choix id="37" type="radio">
+                <gauche>passionné</gauche>
+                <droite>audacieux</droite>
+                
+            </choix>
+        </etape>
+    </partie>
+</root>
