@@ -9,49 +9,59 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.maporientation.maptoomi.activities.HomeActivity"
+            android:name=".activities.HomeActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.maporientation.maptoomi.activities.ProfilActivity"
+            android:name=".activities.ProfilActivity"
             android:label="@string/title_activity_profil"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.ProfilActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.maporientation.maptoomi.activities.MetiersActivity"
+            android:name=".activities.MetiersActivity"
             android:label="@string/title_activity_metiers"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.MetiersActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.maporientation.maptoomi.activities.ActuOrientationActivity"
+            android:name=".activities.ActuOrientationActivity"
             android:label="@string/title_activity_actu_orientation"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.ActuOrientationActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.maporientation.maptoomi.activities.TroisCentSoixanteActivity"
+            android:name=".activities.TroisCentSoixanteActivity"
             android:label="@string/title_activity_trois_cent_soixante"
             android:theme="@style/AppTheme.NoActionBar" >
             <intent-filter>
                 <action android:name="android.intent.action.TroisCentSoixanteActivity" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".activities.TestActivity"
+            android:label="@string/title_activity_test"
+            android:theme="@style/AppTheme.NoActionBar" >
         </activity>
     </application>
 

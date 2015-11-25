@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <!--Premiere Partie-->
+    <!--Premiere Etape-->
     <partie id="1" name="Titre de la partie 1">
         <etape>
             <!--etape 1-->
@@ -53,7 +53,7 @@
         </etape>
         
     </partie>
-    <!--Seconde Partie-->
+    <!--Seconde Etape-->
     <partie id="2" name="Titre de la partie 2">
         <etape>
             <!--etape 1-->

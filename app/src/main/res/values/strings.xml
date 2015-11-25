@@ -5,4 +5,5 @@
     <string name="title_activity_metiers">MetiersActivity</string>
     <string name="title_activity_actu_orientation">ActuOrientationActivity</string>
     <string name="title_activity_trois_cent_soixante">TroisCentSoixanteActivity</string>
+    <string name="title_activity_test">TestActivity</string>
 </resources>
