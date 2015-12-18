@@ -5,5 +5,13 @@
     <color name="colorAccent">#FF4081</color>
     <color name="green">#7FDD4C</color>
     <color name="white">#ffffff</color>
+    <color name="list_divider">#303F9F</color>
+    <color name="list_background">#7FDD4C</color>
+    <string-array name="nav_drawer_items">
+        <item >Facebook</item>
+        <item >Twitter</item>
+        <item >Google Map</item>
+    </string-array>
+
 </resources>
 

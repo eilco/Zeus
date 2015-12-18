@@ -24,7 +24,7 @@ public class TestActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_test);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        /*Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
@@ -41,7 +41,7 @@ public class TestActivity extends AppCompatActivity {
         QuestionXmlParser questionXmlParser = new QuestionXmlParser();
 
         try {
-            in =  openFileInput("C:\\Users\\Ashraf\\AndroidStudioProjects\\Zeus\\app\\src\\main\\res\\tricam\\tricam_question.xml");;
+            in =  openFileInput("C:\\Users\\MOZZ\\AndroidStudioProjects\\Zeus\\app\\src\\main\\res\\tricam\\tricam_question.xml");;
 
             questionXmlParser.parse(in);
         } catch (XmlPullParserException e) {
@@ -49,7 +49,7 @@ public class TestActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
+*/
     }
 
 }

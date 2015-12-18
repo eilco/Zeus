@@ -6,4 +6,9 @@
     <string name="title_activity_actu_orientation">ActuOrientationActivity</string>
     <string name="title_activity_trois_cent_soixante">TroisCentSoixanteActivity</string>
     <string name="title_activity_test">TestActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close"></string>
+    <string name="google_maps_key">AIzaSyBaznJCVrbxu_HnkHLlU6pMCw_sz1SPlLs</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_activity_maps2">Map</string>
 </resources>
