@@ -1,5 +1,6 @@
 package com.maporientation.maptoomi.activities;
-import android.app.FragmentManager;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
@@ -15,6 +16,7 @@ import android.view.View;
 
 import com.maporientation.maptoomi.fragments.facebookfragment;
 
+import com.maporientation.maptoomi.fragments.mapsfragment;
 import com.maporientation.maptoomi.fragments.twitterfragment;
 import com.maporientation.maptoomi.R;import java.lang.Override;import java.lang.SuppressWarnings;
 
@@ -27,21 +29,14 @@ public class ActuOrientationActivity extends AppCompatActivity
         setContentView(R.layout.activity_actu_orientation);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.setDrawerListener(toggle);
         toggle.syncState();
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        FragmentManager fm = getFragmentManager();
+        android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
         fm.beginTransaction().replace(R.id.content_frame,new facebookfragment()).commit();
     }
 
@@ -75,6 +70,8 @@ public class ActuOrientationActivity extends AppCompatActivity
 
             //noinspection SimplifiableIfStatement
             if (id == R.id.action_settings) {
+                Intent intention = new Intent(ActuOrientationActivity.this,mapsfragment.class);
+                startActivity(intention);
                 return true;
             }
 
@@ -84,7 +81,7 @@ public class ActuOrientationActivity extends AppCompatActivity
         @Override
         public boolean onNavigationItemSelected(MenuItem item)
         {
-            FragmentManager fm = getFragmentManager();
+            android.support.v4.app.FragmentManager fm = getSupportFragmentManager();
             int id = item.getItemId();
 
             if (id == R.id.nav_facebook) {
@@ -95,8 +92,6 @@ public class ActuOrientationActivity extends AppCompatActivity
 
                 fm.beginTransaction().replace(R.id.content_frame,new twitterfragment()).commit();
 
-            } else if (id == R.id.nav_google_maps) {
-                //fm.beginTransaction().replace(R.id.content_frame,new mapsfragment()).commit();
             }
             DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
             drawer.closeDrawer(GravityCompat.START);

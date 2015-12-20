@@ -14,7 +14,7 @@ import com.maporientation.maptoomi.R;
 /**
  * Created by MOZZ on 24/11/2015.
  */
-public class facebookfragment extends Fragment {
+public class facebookfragment extends android.support.v4.app.Fragment {
 
     @Nullable
     @Override
