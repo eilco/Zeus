@@ -14,15 +14,17 @@ import com.maporientation.maptoomi.R;
 /**
  * Created by MOZZ on 24/11/2015.
  */
+
+
 public class facebookfragment extends android.support.v4.app.Fragment {
 
+    String url ;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootview = inflater.inflate(R.layout.facebook_fragment,container,false);
-        String url = "https://www.facebook.com/calais.emploi/";
-        //String url = "http://euw.leagueoflegends.com/fr";
+        url = "https://www.facebook.com/calais.emploi/";
         WebView view = (WebView)rootview.findViewById(R.id.webView);
         view.setWebViewClient(new Callback());
         view.getSettings().setJavaScriptEnabled(true);

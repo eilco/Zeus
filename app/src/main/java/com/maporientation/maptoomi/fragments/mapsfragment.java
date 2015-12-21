@@ -36,8 +36,10 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.maporientation.maptoomi.R;
+import com.maporientation.maptoomi.activities.ActuOrientationActivity;
 
 /**
  * Created by MOZZ on 25/11/2015.
@@ -73,6 +75,42 @@ public class mapsfragment extends AppCompatActivity implements
                 @Override
                 public void onMapReady(GoogleMap map) {
                     loadMap(map);
+                    Marker Calais = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(50.95129000000001, 1.8586860000000343))
+                            .title("Calais emploi"));
+                    Marker Saintomer = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(50.750115, 2.25220799999999610))
+                            .title("saint Omer emploi"));
+                    Marker Dunkerque = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(51.0343684, 2.3767762999999604))
+                            .title("Dunkerque emploi"));
+                    Marker lens = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(50.42893, 2.831829999999968))
+                            .title("Lens emploi"));
+                    Marker lille = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(50.62925, 3.057256000000052))
+                            .title("Lille emploi"));
+                    Marker montpellier = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(43.610769, 3.8767159999999876))
+                            .title("Montpellier emploi"));
+                    Marker Paris = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(48.856614,2.3522219000000177))
+                            .title("Paris emploi"));
+
+                    map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                        @Override
+                        public boolean onMarkerClick(Marker marker) {
+                            //facebookfragment.
+                          /*  if (marker == "Calais"){
+
+                            }
+                            else if ()
+                            {}*/
+                            Intent intention = new Intent(mapsfragment.this, ActuOrientationActivity.class);
+                            startActivity(intention);
+                            return true;
+                        }
+                    });
                 }
             });
         } else {
@@ -80,6 +118,7 @@ public class mapsfragment extends AppCompatActivity implements
         }
 
     }
+
 
     protected void loadMap(GoogleMap googleMap) {
         map = googleMap;
