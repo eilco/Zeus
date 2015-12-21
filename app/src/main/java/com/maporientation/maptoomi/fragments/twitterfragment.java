@@ -16,12 +16,16 @@ import com.maporientation.maptoomi.R;
  */
 public class twitterfragment extends android.support.v4.app.Fragment{
 
+    static String url ;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootview = inflater.inflate(R.layout.twitter_fragment,container,false);
-        String url = "https://twitter.com/hashtag/maporientation";
+        if (url==null){
+            url = "https://twitter.com/hashtag/maporientation";
+        }
         WebView view = (WebView)rootview.findViewById(R.id.webView2);
         view.setWebViewClient(new Callback());
         view.getSettings().setJavaScriptEnabled(true);

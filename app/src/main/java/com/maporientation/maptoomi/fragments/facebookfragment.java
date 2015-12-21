@@ -18,13 +18,20 @@ import com.maporientation.maptoomi.R;
 
 public class facebookfragment extends android.support.v4.app.Fragment {
 
-    String url ;
+    static String url ;
+/*
+    public void setUrl(String url) {
+        this.url = url;
+    }*/
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         View rootview = inflater.inflate(R.layout.facebook_fragment,container,false);
-        url = "https://www.facebook.com/calais.emploi/";
+        if (url== null) {
+            url = "https://www.facebook.com/calais.emploi/";
+        }
         WebView view = (WebView)rootview.findViewById(R.id.webView);
         view.setWebViewClient(new Callback());
         view.getSettings().setJavaScriptEnabled(true);

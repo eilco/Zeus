@@ -96,16 +96,72 @@ public class mapsfragment extends AppCompatActivity implements
                     Marker Paris = map.addMarker(new MarkerOptions()
                             .position(new LatLng(48.856614,2.3522219000000177))
                             .title("Paris emploi"));
+                    Marker Boulogne = map.addMarker(new MarkerOptions()
+                            .position(new LatLng(50.725231,1.613334000000009))
+                            .title("Boulogne emploi"));
 
                     map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
                         @Override
                         public boolean onMarkerClick(Marker marker) {
-                            //facebookfragment.
-                          /*  if (marker == "Calais"){
-
+                            String ville = marker.getTitle();
+                            facebookfragment ff= new facebookfragment();
+                            twitterfragment tf=new twitterfragment();
+                             if ("Calais emploi".compareTo(ville)==0){
+                                 String facebookurl = "";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
                             }
-                            else if ()
-                            {}*/
+                             else if ("saint Omer emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/saint.omer.emploi/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Dunkerque emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/dunkerque.offres.emploi/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Lens emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/Lens-Emploi-844914752261284/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Lille emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/lille.emploi/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Montpellier emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/Montpellier-Emploi-149216258765221/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Paris emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/grand.paris.emploi/";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+                             else if ("Boulogne emploi".compareTo(ville)==0)
+                             {
+                                 String facebookurl = "https://www.facebook.com/boulogneemploi";
+                                 String twitterurl="";
+                                 ff.url=facebookurl;
+                                 tf.url=twitterurl;
+                             }
+
                             Intent intention = new Intent(mapsfragment.this, ActuOrientationActivity.class);
                             startActivity(intention);
                             return true;

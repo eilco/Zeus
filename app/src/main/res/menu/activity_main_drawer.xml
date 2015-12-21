@@ -6,8 +6,6 @@
             android:title="facebook" />
         <item android:id="@+id/nav_twitter" android:icon="@drawable/ic_twitter_icon"
             android:title="Twitter" />
-        <item android:id="@+id/nav_google_maps" android:icon="@drawable/ic_googlemaps"
-            android:title="google Maps" />
 
     </group>
 
