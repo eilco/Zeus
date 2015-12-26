@@ -23,6 +23,7 @@
                     <TextView android:id="@+id/profiltext1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:gravity="center"
                         android:text="  La méthode TRICAM sur lequel \n repose ce test vous aidera à mieux \n connître vos points forts et \n facilitera vos choix d'orientation." >
                     </TextView>
@@ -30,21 +31,24 @@
                     <TextView android:id="@+id/profiltext2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:gravity="center"
                         android:text="\n Elle nous permettre de vous \n indiquer les idées de métiers les \n   mieux adapter" >
                     </TextView>
                     <TextView android:id="@+id/profiltext3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:textSize="14sp"
                         android:gravity="center"
                         android:text="\n Vous pourrez aussi demander l'avis\n de vos amis qui vous aideront à \n  mieux vous connaître."
                         android:layout_marginBottom="30dp">
                     </TextView>
                     <Button
-                        android:layout_width="match_parent"
+                        android:layout_width="300dp"
                         android:layout_height="wrap_content"
                         android:background="@drawable/bouton_vert"
                         android:text="Passer le test"
+                        android:textSize="14sp"
                         android:textColor="@color/white"
                         android:gravity="center"
                         android:id="@+id/passer_test"/>

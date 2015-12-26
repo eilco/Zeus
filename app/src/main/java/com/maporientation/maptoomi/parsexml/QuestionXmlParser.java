@@ -1,191 +1,145 @@
 package com.maporientation.maptoomi.parsexml;
 
-import android.util.Xml;
+import android.util.Log;
 
 import com.maporientation.maptoomi.model.Etape;
 
-import org.xmlpull.v1.XmlPullParser;
-import org.xmlpull.v1.XmlPullParserException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.w3c.dom.NodeList;
+import org.xml.sax.SAXException;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
 /**
  * Created by Ashraf on 24/11/2015.
  */
 public class QuestionXmlParser {
 
-    private String id;
-    private String question;
+    private int idQuestion,idChoix;
+    private String questionText;
     private String value;
     private String image;
-    private String gauche;
-    private String droite;
-
+    private String choixGauche;
+    private String choixDroite;
+    private List<Etape> etapeQuestionList=null;
+    private List<Etape> etapeChoixList=null;
+    private Document dom;
     private static final String ns = null;
+    private NodeList partie;
+    private NodeList etapeQuestionNodeList;
+    private NodeList etapeChoixNodeList;
+    private NodeList etapeChoixGaucheDroiteNodeList;
 
-    public List<Etape> parse(InputStream in) throws XmlPullParserException,IOException{
+    public QuestionXmlParser(){
+        etapeQuestionList = new ArrayList<Etape>();
+        etapeChoixList = new ArrayList<Etape>();
+    }
+
+    public void parseXmlFile(InputStream fOut){
+        DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
         try {
-            XmlPullParser parser = Xml.newPullParser();
-            parser.setFeature(XmlPullParser.FEATURE_PROCESS_NAMESPACES, false);
-            parser.setInput(in, null);
-            parser.nextTag();
-            return readRoot(parser);
-        }finally {
-            in.close();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            dom = db.parse(fOut);
+            parseQuestionDocument();
+            parseChoixDocument();
+        } catch (ParserConfigurationException e) {
+            e.printStackTrace();
+        } catch (SAXException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
-    private List<Etape> readRoot(XmlPullParser parser) throws XmlPullParserException,IOException{
+    public List<Etape> parseQuestionDocument(){
+        Log.v("TAG","ParceDocument()");
+        Element documentElement = dom.getDocumentElement();
 
-       // List<Etape> roots = new ArrayList<Etape>();
+        //obtenir l'id de la partie
+        // pour chaque element <etape> on obtient le text ou la valeur de
+        // si partie id = 1 => on obtient le contenu des informations concernant la question id, type, value, image et le texte
+        // si partie id = 2 => on obtient le contenu des informations concernant le choix id et contenu des elements <gauche> et <droite>
 
-        parser.require(XmlPullParser.START_TAG,ns,"root");
-        while (parser.next() != XmlPullParser.END_TAG){
-            if(parser.getEventType() != XmlPullParser.START_TAG){
-                continue;
-            }
-            String name = parser.getName();
-            if(name.equals("partie")){
-                readPartie(parser);
-            }else{
-                skip(parser);
-            }
-        }
-        return readPartie(parser);
-    }
-    private List<Etape> readPartie(XmlPullParser parser) throws XmlPullParserException,IOException{
+        partie = documentElement.getElementsByTagName("partie");
+        for (int i=0; i<partie.getLength();i++){
+            Log.v("TAG","partie.getLength(): "+partie.getLength()+ " i == "+i);
+            Log.v("getIdPartie","id partie == "+partie.item(i).getAttributes().getNamedItem("id").getNodeValue());
 
-        List<Etape> parties = new ArrayList<Etape>();
-        parser.require(XmlPullParser.START_TAG,ns,"partie");
+            if(Integer.parseInt(partie.item(i).getAttributes().getNamedItem("id").getNodeValue()) == 1){
 
-        while (parser.next() != XmlPullParser.END_TAG){
-            if(parser.getEventType() != XmlPullParser.START_TAG){
-                continue;
-            }
-            String name = parser.getName();
-            if(name.equals("etape")){
-                parties.add(readEtape(parser));
-            }else{
-                skip(parser);
-            }
-        }
-        return parties;
-    }
-
-    private Etape readEtape(XmlPullParser parser) throws XmlPullParserException,IOException{
-
-        List<Etape> etapes = new ArrayList<Etape>();
-        parser.require(XmlPullParser.START_TAG,ns,"etape");
-
-        while (parser.next() != XmlPullParser.END_TAG){
-            if(parser.getEventType() != XmlPullParser.START_TAG){
-                continue;
-            }
-            String name = parser.getName();
-            if(name.equals("question")){
-                question = readQuestion(parser);
-            }else if (name.equals("choix")) {
-                etapes.add(readChoix(parser));
-            }else{
-                skip(parser);
+                etapeQuestionNodeList = documentElement.getElementsByTagName("question");
+                Log.v("TAG", "etapeQuestionNodeList.getLength(): "+etapeQuestionNodeList.getLength()+" i == "+i);
+                if(etapeQuestionNodeList != null && etapeQuestionNodeList.getLength()>0){
+                    for(int j=0; j<etapeQuestionNodeList.getLength();j++){
+                        // obtenir le nouveau Element etape
+                        Element etapeElement = (Element) etapeQuestionNodeList.item(j);
+                        // obtenir l'objet etape
+                        //Etape etape = getQuestion(etapeElement);
+                        // ajouter l'etape à la list
+                        questionText = etapeElement.getTextContent()+" ?";
+                        idQuestion = Integer.parseInt(etapeElement.getAttribute("id"));
+                        value = etapeElement.getAttribute("value");
+                        image = etapeElement.getAttribute("image");
+                        Etape question = new Etape(idQuestion,value,image,questionText,false,false);
+                        Log.v("getQuestion","idQuestion: "+idQuestion+" value: "+value
+                                +" image: "+image+" questionText: "+questionText);
+                        etapeQuestionList.add(j,question);
+                    }
+                }
+                return  etapeQuestionList;
             }
         }
-        return new Etape(id, value, image, question);
+        return null;
     }
 
-    private Etape readChoix(XmlPullParser parser) throws XmlPullParserException,IOException{
+    public List<Etape> parseChoixDocument(){
+        Log.v("TAG","ParceDocument()");
+        Element documentElement = dom.getDocumentElement();
 
-        //List<Etape> choix = new ArrayList<Etape>();
-        parser.require(XmlPullParser.START_TAG,ns,"choix");
+        //obtenir l'id de la partie
+        // pour chaque element <etape> on obtient le text ou la valeur de
+        // si partie id = 1 => on obtient le contenu des informations concernant la question id, type, value, image et le texte
+        // si partie id = 2 => on obtient le contenu des informations concernant le choix id et contenu des elements <gauche> et <droite>
 
-        while (parser.next() != XmlPullParser.END_TAG){
-            if(parser.getEventType() != XmlPullParser.START_TAG){
-                continue;
-            }
-            String name = parser.getName();
-            if(name.equals("gauche")){
-                gauche = readGauche(parser);
-            }else if (name.equals("droite")) {
-                droite = readDroite(parser);
-            }else{
-                skip(parser);
-            }
-        }
+        partie = documentElement.getElementsByTagName("partie");
+        for (int i=0; i<partie.getLength();i++){
+            Log.v("TAG","partie.getLength(): "+partie.getLength()+ " i == "+i);
+            Log.v("getIdPartie","id partie == "+partie.item(i).getAttributes().getNamedItem("id").getNodeValue());
 
-        return new Etape(gauche,droite);
-    }
+            if(Integer.parseInt(partie.item(i).getAttributes().getNamedItem("id").getNodeValue()) == 2){
 
-    private String readQuestion(XmlPullParser parser) throws XmlPullParserException,IOException{
+                etapeChoixNodeList = documentElement.getElementsByTagName("choix");
+                if(etapeChoixNodeList != null && etapeChoixNodeList.getLength()>0) {
+                    for (int j = 0; j < etapeChoixNodeList.getLength(); j++) {
+                        // obtenir le nouveau Element etape
+                        //Element etapeElement = (Element) etapeChoixNodeList.item(j);
+                        // obtenir l'id du choix
+                        //getIdChoix(i,etapeElement);
+                        Element choixElement = (Element) etapeChoixNodeList.item(j);
+                        idChoix=Integer.parseInt(choixElement.getAttribute("id"));
+                        Element droite = (Element) choixElement.getElementsByTagName("droite").item(0);
+                        choixDroite = droite.getTextContent();
+                        Element gauche = (Element) choixElement.getElementsByTagName("gauche").item(0);
+                        choixGauche = gauche.getTextContent();
+                        Log.v("getChoix","idChoix: "+idChoix+" ChoixGauche: "+choixGauche
+                                +" ChoixDroite: "+choixDroite);
+                        Etape choix = new Etape(idChoix,choixDroite,choixGauche,3);
+                        etapeChoixList.add(j,choix);
 
-        image ="";
-        value ="";
-        question ="";
-
-        parser.require(XmlPullParser.START_TAG,ns,"question");
-        String question = readQuestionText(parser);
-        parser.require(XmlPullParser.END_TAG, ns,"question");
-
-        return question;
-    }
-
-    private String readGauche(XmlPullParser parser) throws XmlPullParserException,IOException{
-
-        parser.require(XmlPullParser.START_TAG,ns,"gauche");
-        String gauche = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns,"gauche");
-
-        return gauche;
-    }
-
-    private String readDroite(XmlPullParser parser) throws XmlPullParserException,IOException{
-
-        parser.require(XmlPullParser.START_TAG,ns,"droite");
-        String droite = readText(parser);
-        parser.require(XmlPullParser.END_TAG, ns,"droite");
-
-        return droite;
-    }
-
-    private String readQuestionText(XmlPullParser parser) throws XmlPullParserException,IOException{
-        String result = "";
-        if(parser.next() == XmlPullParser.TEXT){
-            result = parser.getText();
-            id = parser.getAttributeValue(null, "id");
-            value = parser.getAttributeValue(null, "value");
-            image = parser.getAttributeValue(null,"image");
-            parser.nextTag();
-        }
-        return result;
-    }
-
-    private String readText(XmlPullParser parser) throws XmlPullParserException,IOException{
-        String result = "";
-        if(parser.next() == XmlPullParser.TEXT){
-            result = parser.getText();
-            parser.nextTag();
-        }
-        return result;
-    }
-
-    private void skip(XmlPullParser parser) throws XmlPullParserException,IOException{
-
-        if (parser.getEventType() != XmlPullParser.START_TAG) {
-            throw new IllegalStateException();
-        }
-        int depth = 1;
-        while (depth != 0) {
-            switch (parser.next()) {
-                case XmlPullParser.END_TAG:
-                    depth--;
-                    break;
-                case XmlPullParser.START_TAG:
-                    depth++;
-                    break;
+                    }
+                }
+                return  etapeChoixList;
             }
         }
-
+        return null;
     }
+
 }

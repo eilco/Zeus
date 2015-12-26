@@ -36,7 +36,7 @@ public class ProfilActivity extends AppCompatActivity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(ProfilActivity.this,TestActivity.class);
+                Intent intent = new Intent(ProfilActivity.this,TestActivity12.class);
                 startActivity(intent);
             }
         });

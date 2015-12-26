@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Couleur quand le rang a été sélectionné-->
+    <item android:state_activated="true" android:drawable="@android:color/darker_gray" />
+    <!-- couleur standard background  -->
+    <item android:drawable="@android:color/transparent" />
+
+</selector>
