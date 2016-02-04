@@ -18,7 +18,8 @@ import com.maporientation.maptoomi.R;
 
 public class facebookfragment extends android.support.v4.app.Fragment {
 
-    static String url ;
+    static public String url ;
+
 /*
     public void setUrl(String url) {
         this.url = url;

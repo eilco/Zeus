@@ -1,28 +1,18 @@
 package com.maporientation.maptoomi.fragments;
-
+import com.maporientation.maptoomi.activities.ActuOrientationActivity;
 import android.app.Activity;
 import android.app.Dialog;
-
-//import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
-import android.app.FragmentTransaction;
+import android.util.Log;
 import android.content.Intent;
 import android.content.IntentSender;
 import android.location.Location;
-
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-
 import android.widget.Toast;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.common.ConnectionResult;
-import com.google.android.gms.common.GooglePlayServicesNotAvailableException;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.location.LocationListener;
@@ -31,15 +21,13 @@ import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.MapFragment;
-
 import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.maporientation.maptoomi.R;
-import com.maporientation.maptoomi.activities.ActuOrientationActivity;
+import com.maporientation.maptoomi.activities.page;
+import java.util.ArrayList;
 
 /**
  * Created by MOZZ on 25/11/2015.
@@ -55,6 +43,10 @@ public class mapsfragment extends AppCompatActivity implements
     private LocationRequest mLocationRequest;
     private long UPDATE_INTERVAL = 60000;  /* 60 secs */
     private long FASTEST_INTERVAL = 5000; /* 5 secs */
+    //protected String jsonResult;
+    //protected String urlServer;
+    public ActuOrientationActivity myactivity;
+    //public ArrayList<page> listpages;
 
     /*
      * Define a request code to send to Google Play services This code is
@@ -62,20 +54,161 @@ public class mapsfragment extends AppCompatActivity implements
      */
     private final static int CONNECTION_FAILURE_RESOLUTION_REQUEST = 9000;
 
+    //
+    //parser fichier JSON
+    //
+
+
+/*
+    public void accessWebService() {
+        try {
+            //Log.d("hello","helloooooooo");
+            JsonReadTask task = new JsonReadTask();
+            task.execute(new String[]{urlServer});
+            Log.d("url","url : " + urlServer);
+        } catch (Exception e) {
+            Log.d("Errorn", "ERROR in accessWebService");
+        }
+        Log.d("looog dzaaab","acces webserivce  !!!");
+
+    }
+
+    private StringBuilder inputStreamToString(InputStream is) {
+        String rLine = "";
+        StringBuilder answer = new StringBuilder();
+        BufferedReader br = new BufferedReader(new InputStreamReader(is));
+        try {
+            while ((rLine = br.readLine()) != null) {
+                answer.append(rLine);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return answer;
+    }
+    private class JsonReadTask extends AsyncTask<String, Void, String> {
+
+
+        protected String doInBackground(String... params) {
+            Log.d("looog dzaaab", "acces jsonreadTask doinbackground !!!");
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost httpPost = new HttpPost(params[0]);
+            try {
+                HttpResponse response = httpClient.execute(httpPost);
+                jsonResult = inputStreamToString(response.getEntity().getContent()).toString();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return null;
+        }
+
+        private StringBuilder inputStreamToString(InputStream is) {
+            Log.d("looog dzaaab", "acces inputStream !!!");
+            String rLine = "";
+            StringBuilder answer = new StringBuilder();
+            BufferedReader br = new BufferedReader(new InputStreamReader(is));
+            try {
+                while ((rLine = br.readLine()) != null) {
+                    answer.append(rLine);
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return answer;
+        }
+
+        @Override
+        protected void onPostExecute(String s) {
+            try {
+                log("onPostExecute");
+                ParseJson();
+                Log.d("looog dzaaab", "accés parseJson reussit !! !!!");
+            } catch (Exception e) {
+                log("ERROR in onPostExecute");
+                Log.d("looog dzaaab", "je ne dois pas entrer ici XD !!!");
+
+            }
+        }
+
+    }
+    public void ParseJson() {
+
+        try {
+            JSONObject jsonReponse = new JSONObject(jsonResult);
+            log(jsonResult);
+            JSONArray emplois = jsonReponse.optJSONArray("Pages Emplois");
+
+            for(int i = 0;i<emplois.length();i++) {
+                JSONObject obj = new JSONObject(emplois.getString(i));
+                //Log.d("xd", "xd" + obj);
+                page p = new page();
+                //String id=obj.getString("id");
+                p.setId(obj.getString("id"));
+                //String ville=obj.getString("ville");
+                p.setVille(obj.getString("ville"));
+                //String url=obj.getString("url");
+                p.setUrl(obj.getString("url"));
+                String coords=obj.getString("coords");
+                // Log.d("xd", "coords" + coords);
+                if(coords.length()>3) {
+                    String[] parts = coords.split("\\(");
+                    String[] parts2 = parts[1].split("\\)");
+                    String[] coordonne = parts2[0].split("\\,");
+                    Float latitude =Float.parseFloat(coordonne[0]);
+                    p.setLatitude(Float.parseFloat(coordonne[0]));
+                    Float longitude=Float.parseFloat(coordonne[1]);
+                    p.setLongitude(Float.parseFloat(coordonne[1]));
+
+                }
+                else{
+                    float latitude =0;
+                    float longitude=0;
+                    p.setLatitude(latitude);
+                    p.setLongitude(longitude);
+                }
+                listpages.add(p);
+            }
+            Log.d("size","size"+listpages.size());
+        } catch (JSONException e) {e.getMessage();}
+
+    }
+
+    public void log(String string) {
+        String TAG = "DEBUG";
+        Log.v(TAG, string);
+    }
+
+    ////
+    ///
+    ///
+    */
     @Nullable
     @Override
     public void onCreate( Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.maps_fragment);
+        myactivity=new ActuOrientationActivity();
+        //listpages= myactivity.Listpages;
+        Log.d("looog", "size : " + myactivity.listpages);
+            //Log.d("looog dzaaab", "size2 : " + listpages.size());
+            mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mymap));
+            if (mapFragment != null) {
+                Log.d("looog dzaaab", "size3 : " + myactivity.listpages.size());
+                mapFragment.getMapAsync(new OnMapReadyCallback() {
 
-        mapFragment = ((SupportMapFragment) getSupportFragmentManager().findFragmentById(R.id.mymap));
-        if (mapFragment != null) {
-            mapFragment.getMapAsync(new OnMapReadyCallback() {
-                @Override
-                public void onMapReady(GoogleMap map) {
-                    loadMap(map);
-                    Marker Calais = map.addMarker(new MarkerOptions()
+                    @Override
+                    public void onMapReady(GoogleMap map) {
+                        Log.d("looog dzaaab", "ville" + myactivity.listpages.size());
+                        loadMap(map);
+                        for (int i = 0; i < myactivity.listpages.size(); i++) {
+                            map.addMarker(new MarkerOptions()
+                                    .position(new LatLng(myactivity.listpages.get(i).getLatitude(), myactivity.listpages.get(i).getLongitude()))
+                                    .title(myactivity.listpages.get(i).getVille()));
+
+                        }
+                    /*Marker Calais = map.addMarker(new MarkerOptions()
                             .position(new LatLng(50.95129000000001, 1.8586860000000343))
                             .title("Calais emploi"));
                     Marker Saintomer = map.addMarker(new MarkerOptions()
@@ -98,85 +231,82 @@ public class mapsfragment extends AppCompatActivity implements
                             .title("Paris emploi"));
                     Marker Boulogne = map.addMarker(new MarkerOptions()
                             .position(new LatLng(50.725231,1.613334000000009))
-                            .title("Boulogne emploi"));
+                            .title("Boulogne emploi"));*/
 
-                    map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
-                        @Override
-                        public boolean onMarkerClick(Marker marker) {
-                            String ville = marker.getTitle();
-                            facebookfragment ff= new facebookfragment();
-                            twitterfragment tf=new twitterfragment();
-                             if ("Calais emploi".compareTo(ville)==0){
-                                 String facebookurl = "";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
+                        map.setOnMarkerClickListener(new GoogleMap.OnMarkerClickListener() {
+                            @Override
+                            public boolean onMarkerClick(Marker marker) {
+                                String ville = marker.getTitle();
+                                facebookfragment ff = new facebookfragment();
+                                twitterfragment tf = new twitterfragment();
+                                for (int i=0;i<myactivity.listpages.size();i++)
+                                {
+                                    if (myactivity.listpages.get(i).getVille() .compareTo(ville) == 0)
+                                    {
+                                        String facebookurl = myactivity.listpages.get(i).getUrl();
+                                        ff.url = facebookurl;
+                                    }
+                                }
+
+                               /* if ("Calais emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+
+                                    tf.url = twitterurl;
+                                } else if ("saint Omer emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/saint.omer.emploi/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Dunkerque emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/dunkerque.offres.emploi/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Lens emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/Lens-Emploi-844914752261284/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Lille emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/lille.emploi/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Montpellier emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/Montpellier-Emploi-149216258765221/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Paris emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/grand.paris.emploi/";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                } else if ("Boulogne emploi".compareTo(ville) == 0) {
+                                    String facebookurl = "https://www.facebook.com/boulogneemploi";
+                                    String twitterurl = "";
+                                    ff.url = facebookurl;
+                                    tf.url = twitterurl;
+                                }*/
+
+                                Intent intention = new Intent(mapsfragment.this, ActuOrientationActivity.class);
+                                startActivity(intention);
+
+                                return true;
                             }
-                             else if ("saint Omer emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/saint.omer.emploi/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Dunkerque emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/dunkerque.offres.emploi/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Lens emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/Lens-Emploi-844914752261284/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Lille emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/lille.emploi/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Montpellier emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/Montpellier-Emploi-149216258765221/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Paris emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/grand.paris.emploi/";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-                             else if ("Boulogne emploi".compareTo(ville)==0)
-                             {
-                                 String facebookurl = "https://www.facebook.com/boulogneemploi";
-                                 String twitterurl="";
-                                 ff.url=facebookurl;
-                                 tf.url=twitterurl;
-                             }
-
-                            Intent intention = new Intent(mapsfragment.this, ActuOrientationActivity.class);
-                            startActivity(intention);
-                            return true;
-                        }
-                    });
-                }
-            });
-        } else {
-            Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
-        }
-
+                        });
+                    }
+                });
+            } else {
+                Toast.makeText(this, "Error - Map Fragment was null!!", Toast.LENGTH_SHORT).show();
+            }
+        //  }
     }
 
-
     protected void loadMap(GoogleMap googleMap) {
+
         map = googleMap;
         if (map != null) {
             // Map is ready
@@ -281,7 +411,7 @@ public class mapsfragment extends AppCompatActivity implements
         if (location != null) {
             Toast.makeText(this, "GPS location was found!", Toast.LENGTH_SHORT).show();
             LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
-            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 17);
+            CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngZoom(latLng, 10);
             map.animateCamera(cameraUpdate);
             startLocationUpdates();
         } else {
